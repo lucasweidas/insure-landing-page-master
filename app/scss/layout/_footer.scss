@@ -1,0 +1,27 @@
+@use '../abstracts' as *;
+
+.footer {
+  --footer-background-url: url('../images/bg-pattern-footer-mobile.svg');
+  background: var(--footer-background-url) top left no-repeat, var(--color-white-2);
+  padding-block: rem(88);
+
+  @include breakpoint(medium) {
+    --footer-background-url: url('../images/bg-pattern-footer-desktop.svg');
+    padding-block: rem(64);
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: rem(32);
+    margin-block-end: rem(40);
+
+    @include breakpoint(large) {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-block-end: rem(32);
+    }
+  }
+}

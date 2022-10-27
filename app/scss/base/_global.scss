@@ -1,0 +1,45 @@
+@use '../abstracts' as *;
+
+:root {
+  --container-max-width: #{rem(1110)};
+  --container-padding-inline: #{rem(24)};
+  --duration-1: 150ms;
+  --duration-2: 200ms;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+
+  html.no-scroll & {
+    overflow-y: hidden;
+    position: relative;
+  }
+}
+
+.no-scroll {
+  overflow-y: hidden;
+}
+
+.container {
+  width: min(100% - (var(--container-padding-inline) * 2), var(--container-max-width));
+  margin-inline: auto;
+}
+
+.margin-block-xl {
+  margin-block-start: rem(140);
+
+  @include breakpoint(large) {
+    margin-block-start: rem(150);
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

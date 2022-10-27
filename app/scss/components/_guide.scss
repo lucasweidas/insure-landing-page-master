@@ -1,0 +1,118 @@
+@use '../abstracts' as *;
+
+.guide {
+  &--header {
+    display: flex;
+    gap: rem(34);
+
+    @include breakpoint-down(large) {
+      width: 100%;
+      min-height: calc(100vh - 100%);
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      visibility: hidden;
+      z-index: 999;
+      background: url('../images/bg-pattern-mobile-nav.svg') bottom center / 100% clamp(rem(218), 50vw, rem(340)) no-repeat, var(--color-dark-violet-9);
+      padding: rem(52) var(--container-padding-inline);
+      transform: translateX(100%);
+    }
+
+    @include breakpoint-down(xsmall) {
+      background-size: auto;
+    }
+
+    .nav--header.active & {
+      animation: show-guide 200ms ease-in-out forwards;
+
+      @keyframes show-guide {
+        100% {
+          visibility: visible;
+          transform: translateX(0%);
+        }
+      }
+    }
+
+    &.closing {
+      animation: closing-guide 200ms ease-in-out forwards;
+
+      @keyframes closing-guide {
+        0% {
+          visibility: visible;
+          transform: translateX(0%);
+        }
+      }
+    }
+
+    .list {
+      text-align: center;
+
+      @include breakpoint-down(large) {
+        row-gap: rem(48);
+
+        &__link {
+          font-size: var(--font-size-5);
+          color: var(--color-white-1);
+        }
+      }
+
+      @include breakpoint(large) {
+        flex-direction: row;
+        column-gap: rem(26);
+        white-space: nowrap;
+
+        &__link {
+          transition: color var(--duration-1) ease;
+
+          &:hover,
+          &:focus-visible {
+            color: var(--color-dark-violet-9);
+          }
+        }
+      }
+    }
+
+    .button--dark {
+      @include breakpoint-down(large) {
+        --button-color: var(--color-white-1);
+        --button-color-hover: var(--color-dark-violet-9);
+      }
+    }
+  }
+
+  &--socials {
+    .list {
+      flex-direction: row;
+      column-gap: rem(16);
+
+      &__link {
+        font-size: var(--font-size-6);
+        color: var(--color-grayish-violet);
+        transition: color var(--duration-1);
+
+        &:hover,
+        &:focus-visible {
+          color: var(--color-dark-violet-9);
+        }
+      }
+    }
+  }
+
+  &--footer {
+    text-align: center;
+
+    @include breakpoint(large) {
+      text-align: start;
+    }
+
+    .list {
+      row-gap: rem(18);
+
+      @include breakpoint(large) {
+        align-items: flex-start;
+      }
+    }
+  }
+}

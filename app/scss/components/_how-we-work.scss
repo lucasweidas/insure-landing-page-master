@@ -1,0 +1,28 @@
+@use '../abstracts' as *;
+
+.how-we-work {
+  --how-background-url: url('../images/bg-pattern-how-we-work-mobile.svg');
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(32);
+  padding: rem(72) rem(16);
+  background: var(--how-background-url) top right no-repeat, var(--color-dark-violet-7);
+  text-align: center;
+
+  @include breakpoint(large) {
+    --how-background-url: url('../images/bg-pattern-how-we-work-desktop.svg');
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline: rem(80);
+    text-align: start;
+  }
+
+  .headline-2--light {
+    width: min(100%, rem(480));
+  }
+
+  .button--light {
+    --button-max-width: #{rem(180)};
+  }
+}

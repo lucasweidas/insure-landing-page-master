@@ -1,0 +1,121 @@
+@use '../abstracts' as *;
+
+.intro {
+  background-color: var(--color-dark-violet-7);
+
+  @include breakpoint(medium) {
+    position: relative;
+    isolation: isolate;
+
+    &::before,
+    &::after {
+      content: var(--intro-background-url);
+      position: absolute;
+      z-index: -1;
+    }
+
+    &::before {
+      --intro-background-url: url('../images/bg-pattern-intro-left-desktop.svg');
+      top: 84%;
+
+      @include breakpoint(large) {
+        top: 72%;
+      }
+    }
+
+    &::after {
+      --intro-background-url: url('../images/bg-pattern-intro-right-desktop.svg');
+      top: 0;
+      right: rem(-200);
+      z-index: 0;
+
+      @include breakpoint(xlarge) {
+        right: 0;
+      }
+    }
+  }
+
+  &__container {
+    --container-padding-top: #{rem(104)};
+    display: grid;
+    justify-items: center;
+
+    @include breakpoint(large) {
+      grid-template-columns: repeat(2, minmax(auto, rem(540)));
+      grid-template-areas: 'content image';
+      justify-content: space-between;
+      column-gap: rem(20);
+      position: relative;
+      padding-block-start: var(--container-padding-top);
+    }
+
+    .image {
+      width: min(100vw, rem(540));
+      max-width: none;
+      margin-inline: calc(var(--container-padding-inline) * -1);
+
+      @include breakpoint(large) {
+        width: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-inline: 0;
+        grid-area: image;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-auto-rows: min-content;
+    justify-items: center;
+    padding-block: rem(92);
+    text-align: center;
+
+    @include breakpoint-down(medium) {
+      position: relative;
+      isolation: isolate;
+
+      &::before,
+      &::after {
+        content: var(--intro-background-url);
+        position: absolute;
+        z-index: -1;
+      }
+
+      &::before {
+        --intro-background-url: url('../images/bg-pattern-intro-left-mobile.svg');
+        top: 0;
+        left: calc(var(--container-padding-inline) * -1);
+      }
+
+      &::after {
+        --intro-background-url: url('../images/bg-pattern-intro-right-mobile.svg');
+        bottom: -35%;
+        right: calc(var(--container-padding-inline) * -1);
+      }
+    }
+
+    @include breakpoint(large) {
+      position: relative;
+      text-align: start;
+      grid-area: content;
+      justify-items: flex-start;
+      padding-block: rem(64) rem(128);
+
+      @include container-border(var(--color-white-1));
+    }
+
+    .text-light {
+      width: min(100%, rem(580));
+    }
+
+    .button--light {
+      margin-block-start: rem(32);
+    }
+  }
+}

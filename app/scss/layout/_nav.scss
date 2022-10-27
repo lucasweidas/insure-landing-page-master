@@ -1,0 +1,23 @@
+@use '../abstracts' as *;
+
+.nav {
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &--footer {
+    display: grid;
+    justify-items: center;
+    align-items: flex-start;
+    row-gap: rem(44);
+    padding-block-start: rem(40);
+    border-top: rem(1) solid var(--color-grayish-violet);
+
+    @include breakpoint(large) {
+      grid-template-columns: repeat(4, 1fr);
+      padding-block-start: rem(50);
+    }
+  }
+}

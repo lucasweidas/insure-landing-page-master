@@ -1,0 +1,45 @@
+@use 'breakpoints' as *;
+@use 'functions' as *;
+
+@mixin breakpoint($size) {
+  @media screen and (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media screen and (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
+
+@mixin button-link {
+  width: min(100%, var(--button-max-width));
+  height: var(--button-height);
+  border: rem(2) solid var(--button-color);
+  font-size: var(--button-font-size);
+  font-weight: 700;
+  color: var(--button-color);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition-property: background-color, color;
+  transition: var(--duration-2) ease;
+  @content;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--button-color);
+    color: var(--button-color-hover);
+  }
+}
+
+@mixin container-border($color) {
+  &::before {
+    content: '';
+    width: rem(150);
+    height: rem(1);
+    position: absolute;
+    top: 0;
+    background-color: $color;
+  }
+}

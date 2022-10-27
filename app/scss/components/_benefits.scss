@@ -1,0 +1,43 @@
+@use '../abstracts' as *;
+
+.benefits {
+  display: grid;
+  justify-items: center;
+  position: relative;
+  padding-block-start: rem(44);
+  text-align: center;
+
+  @include container-border(var(--color-dark-violet-7));
+
+  @include breakpoint(large) {
+    justify-items: flex-start;
+    margin-block-start: rem(304);
+    text-align: start;
+  }
+
+  &__cards {
+    display: grid;
+    justify-items: center;
+    row-gap: rem(62);
+
+    @include breakpoint(large) {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: baseline;
+      column-gap: rem(28);
+    }
+
+    .card {
+      width: min(100%, rem(500));
+      display: grid;
+      justify-items: center;
+
+      @include breakpoint(large) {
+        justify-items: flex-start;
+      }
+
+      &__icon {
+        margin-block-end: rem(40);
+      }
+    }
+  }
+}

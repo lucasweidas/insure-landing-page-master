@@ -1,0 +1,111 @@
+@use '../abstracts' as *;
+
+:root {
+  --font-dm-serif-display: 'DM Serif Display', serif;
+  --font-karla: 'Karla', sans-serif;
+  --font-size-2: #{rem(14)};
+  --font-size-3: #{rem(16)};
+  --font-size-5: #{rem(20)};
+  --font-size-6: #{rem(26)};
+  --font-size-headline-1: clamp(#{rem(38)}, 13vw, #{rem(46)});
+  --font-size-headline-2: clamp(#{rem(32)}, 11vw, #{rem(38)});
+  --font-size-headline-3: clamp(#{rem(24)}, 8vw, #{rem(26)});
+
+  @include breakpoint(large) {
+    --font-size-headline-1: #{rem(72)};
+    --font-size-headline-2: #{rem(54)};
+    --font-size-headline-3: #{rem(28)};
+  }
+}
+
+body {
+  font-family: var(--font-karla);
+  font-size: var(--font-size-3);
+  font-weight: 400;
+}
+
+.headline {
+  font-family: var(--font-dm-serif-display);
+  font-weight: 400;
+
+  &-1,
+  &-2,
+  &-3 {
+    @extend .headline;
+  }
+
+  &-1 {
+    margin-block-end: rem(24);
+    font-size: var(--font-size-headline-1);
+    color: var(--color-white-1);
+  }
+
+  &-2 {
+    &--dark {
+      @extend .headline-2;
+      margin-block-end: rem(82);
+      font-size: var(--font-size-headline-1);
+      color: var(--color-dark-violet-9);
+    }
+
+    &--light {
+      @extend .headline-2;
+      font-size: var(--font-size-headline-2);
+      color: var(--color-white-1);
+    }
+
+    &--sm {
+      margin-block-end: rem(40);
+      font-size: var(--font-size-3);
+    }
+  }
+
+  &-3 {
+    margin-block-end: rem(24);
+    font-size: var(--font-size-headline-3);
+    color: var(--color-dark-violet-9);
+  }
+}
+
+.text-upper {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  &--grayish,
+  &--dark {
+    @extend .text-upper;
+  }
+
+  &--grayish {
+    color: var(--color-grayish-violet);
+  }
+
+  &--dark {
+    color: var(--color-dark-violet-9);
+    text-decoration: underline solid transparent rem(1);
+    transition: text-decoration-color var(--duration-1) ease;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
+.text {
+  line-height: 1.6;
+
+  &-light,
+  &-grayish {
+    @extend .text;
+  }
+
+  &-light {
+    color: var(--color-white-1);
+  }
+
+  &-grayish {
+    color: var(--color-grayish-violet);
+  }
+}
